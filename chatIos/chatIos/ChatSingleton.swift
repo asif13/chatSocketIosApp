@@ -8,9 +8,14 @@
 
 import UIKit
 
+protocol ChatDelegates: class{
+    func receivedChat(message : String,username : String)
+}
+
 class ChatSingleton: NSObject {
     var socket: SocketIOClient!
-    
+    var chatDelegate: ChatDelegates?
+
     class var sharedInstance : ChatSingleton{
         struct Static {
             static var onceToken : dispatch_once_t = 0
@@ -43,6 +48,13 @@ class ChatSingleton: NSObject {
             print("login")
             print(data)
         }
-        
+        self.socket.on("new message"){(data,ack)-> Void in
+            print("new message")
+            print(data)
+            let dict = data[0] as! NSDictionary
+            let message = dict["message"] as! String
+            let username = dict["username"] as! String
+            self.chatDelegate?.receivedChat(message, username: username)
+        }
     }
 }

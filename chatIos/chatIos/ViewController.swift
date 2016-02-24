@@ -8,25 +8,33 @@
 
 import UIKit
 
-class ViewController: UIViewController,UITableViewDelegate,UITableViewDataSource {
+class ViewController: UIViewController,UITableViewDelegate,UITableViewDataSource,ChatDelegates ,UITextFieldDelegate{
     @IBOutlet weak var setusername: UIButton!
 
     @IBOutlet weak var tableViewOutlet: UITableView!
     @IBOutlet weak var messageOutlet: UITextField!
     @IBOutlet weak var username: UITextField!
+    
+    @IBOutlet weak var sendButton: UIButton!
     var chatMessages = [(String,String)]()
     override func viewDidLoad() {
         super.viewDidLoad()
-        // Do any additional setup after loading the view, typically from a nib.
-        tableViewOutlet.delegate = self
+        ChatSingleton.sharedInstance.chatDelegate = self
+         tableViewOutlet.delegate = self
         tableViewOutlet.dataSource = self
         ChatSingleton.sharedInstance.chatInit()
-        ChatSingleton.sharedInstance.handlers()
-        tableViewOutlet.tableFooterView = UIView(frame: CGRectZero)
+         tableViewOutlet.tableFooterView = UIView(frame: CGRectZero)
         tableViewOutlet.hidden = true
-        chatMessages.append(("asd","hi"))
+        
+        let tap: UITapGestureRecognizer = UITapGestureRecognizer(target: self, action: "dismissKeyboard")
+        view.addGestureRecognizer(tap)
+        
+        messageOutlet.delegate = self
+        
     }
-
+    func dismissKeyboard() {
+         view.endEditing(true)
+    }
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
@@ -37,13 +45,19 @@ class ViewController: UIViewController,UITableViewDelegate,UITableViewDataSource
         if name != ""
         {
             ChatSingleton.sharedInstance.socket.emit("add user", name!)
+            usernameStr = name!
             usernameSet()
         }
     }
-    
+    var usernameStr = ""
     @IBAction func sendMessage(sender: UIButton) {
-        
-        
+        let message = messageOutlet.text
+        let str : String = messageOutlet.text!
+        ChatSingleton.sharedInstance.socket.emit("new message", message!)
+        let user :  String = username.text!
+        let tuple = (user,str)
+        chatMessages.append(tuple)
+        tableViewOutlet.reloadData()
     }
     func usernameSet()
     {
@@ -67,6 +81,13 @@ class ViewController: UIViewController,UITableViewDelegate,UITableViewDataSource
         cell.message.text = chatMessages[indexPath.row].1
         return cell
     }
-
+    // chat delegate
+    func receivedChat(message : String,username:String)
+    {
+        let tuple = (username,message)
+        chatMessages.append(tuple)
+        tableViewOutlet.reloadData()
+    }
+    
 }
 
