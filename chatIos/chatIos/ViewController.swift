@@ -7,48 +7,93 @@
 //
 
 import UIKit
+import CoreLocation
 
-class ViewController: UIViewController,UITableViewDelegate,UITableViewDataSource,ChatDelegates ,UITextFieldDelegate{
+class ViewController: UIViewController,UITableViewDelegate,UITableViewDataSource,ChatDelegates ,UITextFieldDelegate,CLLocationManagerDelegate{
     @IBOutlet weak var setusername: UIButton!
-
+    @IBOutlet weak var passwordOutlet: UITextField!
     @IBOutlet weak var tableViewOutlet: UITableView!
     @IBOutlet weak var messageOutlet: UITextField!
     @IBOutlet weak var username: UITextField!
-    
     @IBOutlet weak var sendButton: UIButton!
+    
+    
+    var locationManager: CLLocationManager!
     var chatMessages = [(String,String)]()
     override func viewDidLoad() {
+        
         super.viewDidLoad()
+        
         ChatSingleton.sharedInstance.chatDelegate = self
-         tableViewOutlet.delegate = self
+        
+        tableViewOutlet.delegate = self
+        
         tableViewOutlet.dataSource = self
-        ChatSingleton.sharedInstance.chatInit()
-         tableViewOutlet.tableFooterView = UIView(frame: CGRectZero)
+        
+        
+        tableViewOutlet.tableFooterView = UIView(frame: CGRectZero)
+        
         tableViewOutlet.hidden = true
+        messageOutlet.hidden = true
         
         let tap: UITapGestureRecognizer = UITapGestureRecognizer(target: self, action: "dismissKeyboard")
         view.addGestureRecognizer(tap)
-        
         messageOutlet.delegate = self
         
     }
+    
     func dismissKeyboard() {
          view.endEditing(true)
     }
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
+    //MARK : Location functions
+    
+    func locationManager(manager: CLLocationManager, didUpdateToLocation newLocation: CLLocation, fromLocation oldLocation: CLLocation) {
+        
+        print("lat value \(newLocation.coordinate.latitude)")
+        print("lon value \(newLocation.coordinate.longitude)")
+        
     }
-
+    
+    func getCurrentLocation(){
+        
+        self.locationManager = CLLocationManager()
+        self.locationManager.requestWhenInUseAuthorization()
+        
+        if CLLocationManager.locationServicesEnabled(){
+            
+            self.locationManager.delegate = self
+            self.locationManager.desiredAccuracy = kCLLocationAccuracyHundredMeters
+            self.locationManager.startUpdatingLocation()
+            
+            let location = locationManager.location
+            if location != nil{
+                var coord = CLLocationCoordinate2D(latitude: location!.coordinate.latitude, longitude: location!.coordinate.longitude)
+                coord = (location?.coordinate)!
+                
+                GlobalObjects.sharedInstance.latitude = "\(coord.latitude)"
+                GlobalObjects.sharedInstance.longitude = "\(coord.longitude)"
+                
+                print("current lat/long: \(GlobalObjects.sharedInstance.latitude) \(GlobalObjects.sharedInstance.longitude)")
+                
+            }
+            
+        }
+        
+    }
+    
+    //MARK : actions
     @IBAction func login(sender: UIButton) {
         let name = username.text
-        if name != ""
+        let password = passwordOutlet.text
+        if name != "" && password != ""
         {
-            ChatSingleton.sharedInstance.socket.emit("add user", name!)
             usernameStr = name!
-            usernameSet()
+            let dict : NSDictionary = ["username":username.text!,"password":passwordOutlet.text!]
+
+            callApiForLoginOrSignUP(dict)
         }
     }
+    
     var usernameStr = ""
     @IBAction func sendMessage(sender: UIButton) {
         let message = messageOutlet.text
@@ -59,16 +104,11 @@ class ViewController: UIViewController,UITableViewDelegate,UITableViewDataSource
         chatMessages.append(tuple)
         tableViewOutlet.reloadData()
     }
-    func usernameSet()
-    {
-        setusername.hidden = true
-        username.hidden = true
-        tableViewOutlet.hidden = false
-
-    }
     
     
-    //tableview delegates 
+    
+    
+    //MARK : tableview delegate .
     func numberOfSectionsInTableView(tableView: UITableView) -> Int {
         return 1
     }
@@ -81,13 +121,48 @@ class ViewController: UIViewController,UITableViewDelegate,UITableViewDataSource
         cell.message.text = chatMessages[indexPath.row].1
         return cell
     }
-    // chat delegate
+    
+    
+    
+    //MARK : Socket delegates
     func receivedChat(message : String,username:String)
     {
         let tuple = (username,message)
         chatMessages.append(tuple)
         tableViewOutlet.reloadData()
     }
+    
+    
+    
+    //login functions
+    func userHasLoggedIn()
+    {
+        setusername.hidden = true
+        username.hidden = true
+        passwordOutlet.hidden = true
+        messageOutlet.hidden = false
+        tableViewOutlet.hidden = false
+        ChatSingleton.sharedInstance.chatInit()
+        ChatSingleton.sharedInstance.socket.emit("add user", username.text!)
+        
+    }
+    
+    
+    
+    //MARK: API calls
+    func callApiForLoginOrSignUP(data : NSDictionary){
+ 
+        RemoteRequest.sharedInstance.POST(Constants.url.loginOrSignupUrl!, params: data as? [String : AnyObject], onSuccess: { (data) -> Void in
+            dispatch_async(dispatch_get_main_queue()) {
+                self.userHasLoggedIn()
+            }
+            
+            }) { (message) -> Void in
+                print(message)
+        }
+    }
+
+    
     
 }
 

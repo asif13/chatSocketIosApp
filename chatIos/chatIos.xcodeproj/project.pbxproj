@@ -34,6 +34,8 @@
 		735777FD1C7CDD9800FF0463 /* SocketTypes.swift in Sources */ = {isa = PBXBuildFile; fileRef = 735777EA1C7CDD9800FF0463 /* SocketTypes.swift */; };
 		735777FE1C7CDD9800FF0463 /* SwiftRegex.swift in Sources */ = {isa = PBXBuildFile; fileRef = 735777EB1C7CDD9800FF0463 /* SwiftRegex.swift */; };
 		735777FF1C7CDD9800FF0463 /* WebSocket.swift in Sources */ = {isa = PBXBuildFile; fileRef = 735777EC1C7CDD9800FF0463 /* WebSocket.swift */; };
+		735778031C806FB600FF0463 /* RemoteRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 735778021C806FB600FF0463 /* RemoteRequest.swift */; };
+		735778051C8087B000FF0463 /* GlobalObjects.swift in Sources */ = {isa = PBXBuildFile; fileRef = 735778041C8087B000FF0463 /* GlobalObjects.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -66,6 +68,8 @@
 		735777EA1C7CDD9800FF0463 /* SocketTypes.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = SocketTypes.swift; path = Frameworks/Sockets/SocketTypes.swift; sourceTree = "<group>"; };
 		735777EB1C7CDD9800FF0463 /* SwiftRegex.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = SwiftRegex.swift; path = Frameworks/Sockets/SwiftRegex.swift; sourceTree = "<group>"; };
 		735777EC1C7CDD9800FF0463 /* WebSocket.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = WebSocket.swift; path = Frameworks/Sockets/WebSocket.swift; sourceTree = "<group>"; };
+		735778021C806FB600FF0463 /* RemoteRequest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RemoteRequest.swift; sourceTree = "<group>"; };
+		735778041C8087B000FF0463 /* GlobalObjects.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GlobalObjects.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -98,6 +102,8 @@
 		735777971C7BA92C00FF0463 /* chatIos */ = {
 			isa = PBXGroup;
 			children = (
+				735778041C8087B000FF0463 /* GlobalObjects.swift */,
+				735778011C806F3F00FF0463 /* apirequests */,
 				735778001C7CDDA200FF0463 /* sockets */,
 				735777981C7BA92C00FF0463 /* AppDelegate.swift */,
 				735777AA1C7BA95F00FF0463 /* ChatSingleton.swift */,
@@ -136,6 +142,14 @@
 				735777EC1C7CDD9800FF0463 /* WebSocket.swift */,
 			);
 			name = sockets;
+			sourceTree = "<group>";
+		};
+		735778011C806F3F00FF0463 /* apirequests */ = {
+			isa = PBXGroup;
+			children = (
+				735778021C806FB600FF0463 /* RemoteRequest.swift */,
+			);
+			name = apirequests;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -211,6 +225,7 @@
 			files = (
 				735777F61C7CDD9800FF0463 /* SocketIOClient.swift in Sources */,
 				735777FF1C7CDD9800FF0463 /* WebSocket.swift in Sources */,
+				735778031C806FB600FF0463 /* RemoteRequest.swift in Sources */,
 				735777F21C7CDD9800FF0463 /* SocketEnginePacketType.swift in Sources */,
 				735777FD1C7CDD9800FF0463 /* SocketTypes.swift in Sources */,
 				7357779B1C7BA92C00FF0463 /* ViewController.swift in Sources */,
@@ -233,6 +248,7 @@
 				735777FC1C7CDD9800FF0463 /* SocketStringReader.swift in Sources */,
 				735777F71C7CDD9800FF0463 /* SocketIOClientOption.swift in Sources */,
 				735777EE1C7CDD9800FF0463 /* SocketAckManager.swift in Sources */,
+				735778051C8087B000FF0463 /* GlobalObjects.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
