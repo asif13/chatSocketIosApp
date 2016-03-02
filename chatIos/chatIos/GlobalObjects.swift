@@ -21,4 +21,5 @@ class GlobalObjects: NSObject {
     }
     var latitude = "12.9335292499163"
     var longitude = "77.6217817571655"
+    var username = ""
 }

@@ -36,6 +36,10 @@
 		735777FF1C7CDD9800FF0463 /* WebSocket.swift in Sources */ = {isa = PBXBuildFile; fileRef = 735777EC1C7CDD9800FF0463 /* WebSocket.swift */; };
 		735778031C806FB600FF0463 /* RemoteRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 735778021C806FB600FF0463 /* RemoteRequest.swift */; };
 		735778051C8087B000FF0463 /* GlobalObjects.swift in Sources */ = {isa = PBXBuildFile; fileRef = 735778041C8087B000FF0463 /* GlobalObjects.swift */; };
+		73D33C4F1C861B83002859A9 /* login.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 73D33C4E1C861B83002859A9 /* login.storyboard */; };
+		73D33C511C861BE5002859A9 /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 73D33C501C861BE5002859A9 /* LoginViewController.swift */; };
+		73D33C541C862E39002859A9 /* chatScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 73D33C531C862E39002859A9 /* chatScreen.storyboard */; };
+		73D33C561C862E4C002859A9 /* ChatScreenViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 73D33C551C862E4C002859A9 /* ChatScreenViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -70,6 +74,10 @@
 		735777EC1C7CDD9800FF0463 /* WebSocket.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = WebSocket.swift; path = Frameworks/Sockets/WebSocket.swift; sourceTree = "<group>"; };
 		735778021C806FB600FF0463 /* RemoteRequest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RemoteRequest.swift; sourceTree = "<group>"; };
 		735778041C8087B000FF0463 /* GlobalObjects.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GlobalObjects.swift; sourceTree = "<group>"; };
+		73D33C4E1C861B83002859A9 /* login.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = login.storyboard; sourceTree = "<group>"; };
+		73D33C501C861BE5002859A9 /* LoginViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
+		73D33C531C862E39002859A9 /* chatScreen.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = chatScreen.storyboard; sourceTree = "<group>"; };
+		73D33C551C862E4C002859A9 /* ChatScreenViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ChatScreenViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -86,7 +94,7 @@
 		7357778C1C7BA92C00FF0463 = {
 			isa = PBXGroup;
 			children = (
-				735777971C7BA92C00FF0463 /* chatIos */,
+				73D33C4C1C861961002859A9 /* projects */,
 				735777961C7BA92C00FF0463 /* Products */,
 			);
 			sourceTree = "<group>";
@@ -102,10 +110,12 @@
 		735777971C7BA92C00FF0463 /* chatIos */ = {
 			isa = PBXGroup;
 			children = (
-				735778041C8087B000FF0463 /* GlobalObjects.swift */,
+				73D33C521C862CC2002859A9 /* chatScreen */,
+				73D33C4D1C861B68002859A9 /* login */,
 				735778011C806F3F00FF0463 /* apirequests */,
 				735778001C7CDDA200FF0463 /* sockets */,
 				735777981C7BA92C00FF0463 /* AppDelegate.swift */,
+				735778041C8087B000FF0463 /* GlobalObjects.swift */,
 				735777AA1C7BA95F00FF0463 /* ChatSingleton.swift */,
 				7357779A1C7BA92C00FF0463 /* ViewController.swift */,
 				7357779C1C7BA92C00FF0463 /* Main.storyboard */,
@@ -150,6 +160,32 @@
 				735778021C806FB600FF0463 /* RemoteRequest.swift */,
 			);
 			name = apirequests;
+			sourceTree = "<group>";
+		};
+		73D33C4C1C861961002859A9 /* projects */ = {
+			isa = PBXGroup;
+			children = (
+				735777971C7BA92C00FF0463 /* chatIos */,
+			);
+			name = projects;
+			sourceTree = "<group>";
+		};
+		73D33C4D1C861B68002859A9 /* login */ = {
+			isa = PBXGroup;
+			children = (
+				73D33C4E1C861B83002859A9 /* login.storyboard */,
+				73D33C501C861BE5002859A9 /* LoginViewController.swift */,
+			);
+			name = login;
+			sourceTree = "<group>";
+		};
+		73D33C521C862CC2002859A9 /* chatScreen */ = {
+			isa = PBXGroup;
+			children = (
+				73D33C531C862E39002859A9 /* chatScreen.storyboard */,
+				73D33C551C862E4C002859A9 /* ChatScreenViewController.swift */,
+			);
+			name = chatScreen;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -210,7 +246,9 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				73D33C4F1C861B83002859A9 /* login.storyboard in Resources */,
 				735777A31C7BA92C00FF0463 /* LaunchScreen.storyboard in Resources */,
+				73D33C541C862E39002859A9 /* chatScreen.storyboard in Resources */,
 				735777A01C7BA92C00FF0463 /* Assets.xcassets in Resources */,
 				7357779E1C7BA92C00FF0463 /* Main.storyboard in Resources */,
 			);
@@ -223,6 +261,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				73D33C511C861BE5002859A9 /* LoginViewController.swift in Sources */,
 				735777F61C7CDD9800FF0463 /* SocketIOClient.swift in Sources */,
 				735777FF1C7CDD9800FF0463 /* WebSocket.swift in Sources */,
 				735778031C806FB600FF0463 /* RemoteRequest.swift in Sources */,
@@ -238,6 +277,7 @@
 				735777F51C7CDD9800FF0463 /* SocketFixUTF8.swift in Sources */,
 				735777991C7BA92C00FF0463 /* AppDelegate.swift in Sources */,
 				735777FE1C7CDD9800FF0463 /* SwiftRegex.swift in Sources */,
+				73D33C561C862E4C002859A9 /* ChatScreenViewController.swift in Sources */,
 				735777FB1C7CDD9800FF0463 /* SocketParser.swift in Sources */,
 				735777ED1C7CDD9800FF0463 /* SocketAckEmitter.swift in Sources */,
 				735777AB1C7BA95F00FF0463 /* ChatSingleton.swift in Sources */,

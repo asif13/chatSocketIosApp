@@ -1,0 +1,89 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="10089" systemVersion="15B42" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
+    <dependencies>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="10072.1"/>
+        <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
+    </dependencies>
+    <scenes>
+        <!--Chat Screen View Controller-->
+        <scene sceneID="0Gf-HD-r8s">
+            <objects>
+                <viewController storyboardIdentifier="chatScreen" id="fIT-yt-G5f" customClass="ChatScreenViewController" customModule="chatIos" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="BdZ-SQ-4kB"/>
+                        <viewControllerLayoutGuide type="bottom" id="A2R-mC-YmQ"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="sO5-tB-9dS">
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="iiA-H6-Po9">
+                                <rect key="frame" x="0.0" y="28" width="600" height="572"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <prototypes>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="cell" id="Wix-q0-b17" customClass="ChatTableViewCell" customModule="chatIos" customModuleProvider="target">
+                                        <rect key="frame" x="0.0" y="28" width="600" height="44"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="Wix-q0-b17" id="AM2-Hy-MmM">
+                                            <rect key="frame" x="0.0" y="0.0" width="600" height="44"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="name" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="143-u5-3Bs">
+                                                    <rect key="frame" x="8" y="11" width="107" height="21"/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="width" constant="107" id="ptf-45-8A6"/>
+                                                    </constraints>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                    <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="name" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Mbt-sp-Y9l">
+                                                    <rect key="frame" x="123" y="11" width="429" height="21"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                    <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                            </subviews>
+                                            <constraints>
+                                                <constraint firstItem="143-u5-3Bs" firstAttribute="centerY" secondItem="AM2-Hy-MmM" secondAttribute="centerY" id="2in-kg-qfT"/>
+                                                <constraint firstItem="Mbt-sp-Y9l" firstAttribute="trailing" secondItem="AM2-Hy-MmM" secondAttribute="trailingMargin" id="D94-ce-fls"/>
+                                                <constraint firstItem="Mbt-sp-Y9l" firstAttribute="leading" secondItem="143-u5-3Bs" secondAttribute="trailing" constant="8" symbolic="YES" id="DRQ-s6-XjL"/>
+                                                <constraint firstItem="Mbt-sp-Y9l" firstAttribute="baseline" secondItem="143-u5-3Bs" secondAttribute="baseline" id="Fb4-zf-qwf"/>
+                                                <constraint firstAttribute="trailingMargin" secondItem="Mbt-sp-Y9l" secondAttribute="trailing" constant="40" id="KQN-X9-wGi"/>
+                                                <constraint firstAttribute="trailingMargin" secondItem="Mbt-sp-Y9l" secondAttribute="trailing" constant="6" id="L2d-Jv-ILI"/>
+                                                <constraint firstAttribute="trailingMargin" secondItem="Mbt-sp-Y9l" secondAttribute="trailing" constant="6" id="UPk-BT-KsO"/>
+                                                <constraint firstItem="143-u5-3Bs" firstAttribute="leading" secondItem="AM2-Hy-MmM" secondAttribute="leadingMargin" id="hL7-wi-HQe"/>
+                                            </constraints>
+                                            <variation key="default">
+                                                <mask key="constraints">
+                                                    <exclude reference="D94-ce-fls"/>
+                                                    <exclude reference="L2d-Jv-ILI"/>
+                                                </mask>
+                                            </variation>
+                                        </tableViewCellContentView>
+                                        <connections>
+                                            <outlet property="message" destination="Mbt-sp-Y9l" id="9uz-NW-RHP"/>
+                                            <outlet property="username" destination="143-u5-3Bs" id="p1H-vP-SOY"/>
+                                        </connections>
+                                    </tableViewCell>
+                                </prototypes>
+                            </tableView>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstAttribute="trailing" secondItem="iiA-H6-Po9" secondAttribute="trailing" id="Iot-nA-zdf"/>
+                            <constraint firstItem="iiA-H6-Po9" firstAttribute="leading" secondItem="sO5-tB-9dS" secondAttribute="leading" id="K2n-DT-BjE"/>
+                            <constraint firstItem="iiA-H6-Po9" firstAttribute="bottom" secondItem="A2R-mC-YmQ" secondAttribute="top" id="bfq-s4-3LN"/>
+                            <constraint firstItem="iiA-H6-Po9" firstAttribute="top" secondItem="BdZ-SQ-4kB" secondAttribute="bottom" constant="8" symbolic="YES" id="tMe-Z8-0vc"/>
+                        </constraints>
+                    </view>
+                    <connections>
+                        <outlet property="tableViewOutlet" destination="iiA-H6-Po9" id="h8V-DS-PL1"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="IFj-11-a5S" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="164" y="197"/>
+        </scene>
+    </scenes>
+</document>
