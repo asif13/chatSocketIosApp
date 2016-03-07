@@ -25,6 +25,8 @@ class LoginViewController: UIViewController,CLLocationManagerDelegate,UITextFiel
         view.addGestureRecognizer(tap)
         textFieldForUsername.delegate = self
         textFieldForUsername.placeholder = "username"
+        ChatSingleton.sharedInstance.chatInit()
+
     }
     
     func dismissKeyboard() {
@@ -32,7 +34,9 @@ class LoginViewController: UIViewController,CLLocationManagerDelegate,UITextFiel
     }
     
     @IBAction func usernamePasswordClicked(sender: UIButton) {
+
         if isPromptedForUsername{
+            
             username = textFieldForUsername.text!
             isPromptedForUsername = false
             textFieldForUsername.text = ""
@@ -54,12 +58,9 @@ class LoginViewController: UIViewController,CLLocationManagerDelegate,UITextFiel
     }
     
     func getCurrentLocation(){
-        
         self.locationManager = CLLocationManager()
         self.locationManager.requestWhenInUseAuthorization()
-        
         if CLLocationManager.locationServicesEnabled(){
-            
             self.locationManager.delegate = self
             self.locationManager.desiredAccuracy = kCLLocationAccuracyHundredMeters
             self.locationManager.startUpdatingLocation()
@@ -76,9 +77,7 @@ class LoginViewController: UIViewController,CLLocationManagerDelegate,UITextFiel
                 isCurrentLocationFetched = true
                  callApiToLogInOrSignUp()
             }
-            
         }
-        
     }
     
     func callApiToLogInOrSignUp(){
@@ -86,6 +85,7 @@ class LoginViewController: UIViewController,CLLocationManagerDelegate,UITextFiel
         let data = ["username":username,"password":password,"latitude":GlobalObjects.sharedInstance.latitude,"longitude":GlobalObjects.sharedInstance.longitude]
         RemoteRequest.sharedInstance.POST(Constants.url.loginOrSignupUrl!, params: data as? [String : String], onSuccess: {
             (data) -> Void in
+            print("data \(data)")
             dispatch_async(dispatch_get_main_queue()) {
                 GlobalObjects.sharedInstance.username = self.username
                  var chatScreen = UIStoryboard(name: "chatScreen", bundle: nil).instantiateViewControllerWithIdentifier("chatScreen") as! ChatScreenViewController

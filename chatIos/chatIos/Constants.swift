@@ -10,8 +10,8 @@ import UIKit
 
 struct Constants {
     struct url{
-        static let chatBaseUrl = "http://127.0.0.1:2015"
-        static let loginOrSignupUrl = NSURL(string : "\(chatBaseUrl)/api/signupUser")
+        static let chatBaseUrl = "http://127.0.0.1:8081"
+        static let loginOrSignupUrl = NSURL(string : "\(chatBaseUrl)/signupUser")
     }
 
 }

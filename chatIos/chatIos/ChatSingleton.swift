@@ -38,6 +38,7 @@ class ChatSingleton: NSObject {
     func handlers(){
         
         self.socket.on("connect") { (data, ack) -> Void in
+            print("connect")
            print(data)
         }
         self.socket.on("user joined") { (data, ack) -> Void in

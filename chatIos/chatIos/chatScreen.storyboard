@@ -18,7 +18,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="iiA-H6-Po9">
-                                <rect key="frame" x="0.0" y="28" width="600" height="572"/>
+                                <rect key="frame" x="0.0" y="28" width="600" height="526"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <prototypes>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="cell" id="Wix-q0-b17" customClass="ChatTableViewCell" customModule="chatIos" customModuleProvider="target">
@@ -68,16 +68,42 @@
                                     </tableViewCell>
                                 </prototypes>
                             </tableView>
+                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="Cg4-uz-GnW">
+                                <rect key="frame" x="0.0" y="562" width="526" height="30"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="526" id="7TS-sP-DTI"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits"/>
+                            </textField>
+                            <button opaque="NO" alpha="0.87000000476837158" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="rfY-2P-6SF">
+                                <rect key="frame" x="534" y="562" width="46" height="30"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="46" id="9Ol-j6-ESf"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="system" pointSize="27"/>
+                                <state key="normal" title="➤"/>
+                                <connections>
+                                    <action selector="sendMessage:" destination="fIT-yt-G5f" eventType="touchUpInside" id="SOc-jF-U6V"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
+                            <constraint firstItem="Cg4-uz-GnW" firstAttribute="top" secondItem="iiA-H6-Po9" secondAttribute="bottom" constant="8" symbolic="YES" id="3G2-Zv-EKG"/>
+                            <constraint firstItem="A2R-mC-YmQ" firstAttribute="top" secondItem="rfY-2P-6SF" secondAttribute="bottom" constant="8" symbolic="YES" id="5L8-ei-NFI"/>
+                            <constraint firstItem="Cg4-uz-GnW" firstAttribute="leading" secondItem="iiA-H6-Po9" secondAttribute="leading" id="IJ2-AO-faw"/>
                             <constraint firstAttribute="trailing" secondItem="iiA-H6-Po9" secondAttribute="trailing" id="Iot-nA-zdf"/>
                             <constraint firstItem="iiA-H6-Po9" firstAttribute="leading" secondItem="sO5-tB-9dS" secondAttribute="leading" id="K2n-DT-BjE"/>
-                            <constraint firstItem="iiA-H6-Po9" firstAttribute="bottom" secondItem="A2R-mC-YmQ" secondAttribute="top" id="bfq-s4-3LN"/>
+                            <constraint firstItem="rfY-2P-6SF" firstAttribute="trailing" secondItem="sO5-tB-9dS" secondAttribute="trailingMargin" id="T5h-M1-92c"/>
+                            <constraint firstItem="iiA-H6-Po9" firstAttribute="bottom" secondItem="A2R-mC-YmQ" secondAttribute="top" constant="-46" id="bfq-s4-3LN"/>
                             <constraint firstItem="iiA-H6-Po9" firstAttribute="top" secondItem="BdZ-SQ-4kB" secondAttribute="bottom" constant="8" symbolic="YES" id="tMe-Z8-0vc"/>
+                            <constraint firstItem="rfY-2P-6SF" firstAttribute="leading" secondItem="Cg4-uz-GnW" secondAttribute="trailing" constant="8" symbolic="YES" id="xgb-ti-YGM"/>
+                            <constraint firstItem="rfY-2P-6SF" firstAttribute="top" secondItem="Cg4-uz-GnW" secondAttribute="top" id="xvD-Zr-GnR"/>
                         </constraints>
                     </view>
                     <connections>
+                        <outlet property="messageOutlet" destination="Cg4-uz-GnW" id="8r2-Qx-ATe"/>
                         <outlet property="tableViewOutlet" destination="iiA-H6-Po9" id="h8V-DS-PL1"/>
                     </connections>
                 </viewController>

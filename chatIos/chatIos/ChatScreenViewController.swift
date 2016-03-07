@@ -8,20 +8,33 @@
 
 import UIKit
 
-class ChatScreenViewController: UIViewController,ChatDelegates {
+class ChatScreenViewController: UIViewController,ChatDelegates,UITableViewDelegate,UITableViewDataSource {
     
     @IBOutlet weak var tableViewOutlet: UITableView!
+    @IBOutlet weak var messageOutlet: UITextField!
     var chatMessages = [(String,String)]()
 
     override func viewDidLoad() {
         super.viewDidLoad()
         tableViewOutlet.tableFooterView = UIView(frame: CGRectZero)
+        tableViewOutlet.delegate = self
+        tableViewOutlet.dataSource = self
         ChatSingleton.sharedInstance.chatDelegate = self
         ChatSingleton.sharedInstance.chatInit()
         ChatSingleton.sharedInstance.socket.emit("add user", GlobalObjects.sharedInstance.username)
     }
     
     
+    @IBAction func sendMessage(sender: UIButton) {
+        let message = messageOutlet.text
+        let str : String = messageOutlet.text!
+        ChatSingleton.sharedInstance.socket.emit("new message", message!)
+        let user :  String = GlobalObjects.sharedInstance.username
+        let tuple = (user,str)
+        chatMessages.append(tuple)
+        tableViewOutlet.reloadData()
+        messageOutlet.text = ""
+    }
     //MARK : Socket delegates
     func receivedChat(message : String,username:String)
     {

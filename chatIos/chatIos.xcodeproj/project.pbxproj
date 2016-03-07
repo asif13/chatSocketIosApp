@@ -110,6 +110,7 @@
 		735777971C7BA92C00FF0463 /* chatIos */ = {
 			isa = PBXGroup;
 			children = (
+				73E5A9441C8CA5EA0070C897 /* utils */,
 				73D33C521C862CC2002859A9 /* chatScreen */,
 				73D33C4D1C861B68002859A9 /* login */,
 				735778011C806F3F00FF0463 /* apirequests */,
@@ -122,7 +123,6 @@
 				7357779F1C7BA92C00FF0463 /* Assets.xcassets */,
 				735777A11C7BA92C00FF0463 /* LaunchScreen.storyboard */,
 				735777A41C7BA92C00FF0463 /* Info.plist */,
-				735777D41C7BAA5800FF0463 /* Constants.swift */,
 				735777D61C7CD19200FF0463 /* ChatTableViewCell.swift */,
 			);
 			path = chatIos;
@@ -186,6 +186,14 @@
 				73D33C551C862E4C002859A9 /* ChatScreenViewController.swift */,
 			);
 			name = chatScreen;
+			sourceTree = "<group>";
+		};
+		73E5A9441C8CA5EA0070C897 /* utils */ = {
+			isa = PBXGroup;
+			children = (
+				735777D41C7BAA5800FF0463 /* Constants.swift */,
+			);
+			name = utils;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
