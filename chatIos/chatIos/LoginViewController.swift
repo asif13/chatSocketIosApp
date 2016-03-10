@@ -53,8 +53,8 @@ class LoginViewController: UIViewController,CLLocationManagerDelegate,UITextFiel
         
         print("lat value \(newLocation.coordinate.latitude)")
         print("lon value \(newLocation.coordinate.longitude)")
-        GlobalObjects.sharedInstance.latitude = " \(newLocation.coordinate.latitude)"
-        GlobalObjects.sharedInstance.longitude = " \(newLocation.coordinate.longitude)"
+        GlobalObjects.sharedInstance.latitude = newLocation.coordinate.latitude
+        GlobalObjects.sharedInstance.longitude = newLocation.coordinate.longitude
     }
     
     func getCurrentLocation(){
@@ -70,8 +70,8 @@ class LoginViewController: UIViewController,CLLocationManagerDelegate,UITextFiel
                 var coord = CLLocationCoordinate2D(latitude: location!.coordinate.latitude, longitude: location!.coordinate.longitude)
                 coord = (location?.coordinate)!
                 
-                GlobalObjects.sharedInstance.latitude = "\(coord.latitude)"
-                GlobalObjects.sharedInstance.longitude = "\(coord.longitude)"
+                GlobalObjects.sharedInstance.latitude = coord.latitude
+                GlobalObjects.sharedInstance.longitude = coord.longitude 
                 
                 print("current lat/long: \(GlobalObjects.sharedInstance.latitude) \(GlobalObjects.sharedInstance.longitude)")
                 isCurrentLocationFetched = true
@@ -83,7 +83,7 @@ class LoginViewController: UIViewController,CLLocationManagerDelegate,UITextFiel
     func callApiToLogInOrSignUp(){
         
         let data = ["username":username,"password":password,"latitude":GlobalObjects.sharedInstance.latitude,"longitude":GlobalObjects.sharedInstance.longitude]
-        RemoteRequest.sharedInstance.POST(Constants.url.loginOrSignupUrl!, params: data as? [String : String], onSuccess: {
+        RemoteRequest.sharedInstance.POST(Constants.url.loginOrSignupUrl!, params: data as? [String : AnyObject], onSuccess: {
             (data) -> Void in
             print("data \(data)")
             dispatch_async(dispatch_get_main_queue()) {

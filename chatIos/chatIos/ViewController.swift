@@ -70,9 +70,9 @@ class ViewController: UIViewController,UITableViewDelegate,UITableViewDataSource
                 var coord = CLLocationCoordinate2D(latitude: location!.coordinate.latitude, longitude: location!.coordinate.longitude)
                 coord = (location?.coordinate)!
                 
-                GlobalObjects.sharedInstance.latitude = "\(coord.latitude)"
-                GlobalObjects.sharedInstance.longitude = "\(coord.longitude)"
-                
+//                GlobalObjects.sharedInstance.latitude = "\(coord.latitude)"
+//                GlobalObjects.sharedInstance.longitude = "\(coord.longitude)"
+//                
                 print("current lat/long: \(GlobalObjects.sharedInstance.latitude) \(GlobalObjects.sharedInstance.longitude)")
                 
             }
